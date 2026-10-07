@@ -1,0 +1,18 @@
+{
+  "name": "sourcemap-resolve",
+  "version": "1.0.0",
+  "description": "Source Map v3 stack frame resolver API",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test './test/**/*.test.js'",
+    "build": "node scripts/build-check.js",
+    "smoke": "node scripts/smoke.js",
+    "verify": "node --test test/ && node scripts/build-check.js && node scripts/smoke.js"
+  },
+  "license": "MIT"
+}

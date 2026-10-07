@@ -1,0 +1,45 @@
+services:
+  # Long-running API. The published host port comes from the HOST_PORT
+  # environment variable (defaults to 8080); the container itself always
+  # listens on 8080.
+  api:
+    build: .
+    image: sourcemap-resolve:latest
+    environment:
+      NODE_ENV: production
+      PORT: "8080"
+    ports:
+      # HOST_PORT is read from the host environment / .env file.
+      - "${HOST_PORT:-8080}:8080"
+    restart: unless-stopped
+
+  # One-shot verification: waits until the API healthcheck passes, then runs
+  # the unit tests, the production build validation and the HTTP smoke tests
+  # (flat mappings + indexed sections). It exits with its own status code and
+  # is never restarted.
+  #
+  # Typical use:
+  #   docker compose up --build --abort-on-container-exit --exit-code-from verify
+  verify:
+    image: sourcemap-resolve:latest
+    build:
+      context: .
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      HOST: api
+      PORT: "8080"
+    restart: "no"
+    command:
+      - sh
+      - -c
+      - |
+        set -e
+        echo "==> unit tests"
+        npm run test
+        echo "==> production build check"
+        node scripts/build-check.js
+        echo "==> smoke tests (flat + sections)"
+        node scripts/smoke.js
