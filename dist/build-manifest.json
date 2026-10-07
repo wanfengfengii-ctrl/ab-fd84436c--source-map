@@ -1,0 +1,39 @@
+{
+  "service": "sourcemap-resolve-service",
+  "builtAt": "2026-10-07T02:30:24.988Z",
+  "node": "v22.23.2",
+  "files": [
+    {
+      "path": "src/errors.js",
+      "sha256": "28a0399cc9103eca9e447bafd436239e51d2edbe3dad3836c84c669df1c9700d"
+    },
+    {
+      "path": "src/server.js",
+      "sha256": "f5e7c5e6321d46dc18de62fbc3b7bebbf2b6dc59ac7c9be6560e1c06cfcad924"
+    },
+    {
+      "path": "src/sourcemap.js",
+      "sha256": "327974b6b318a93170b7f83dd4623973ab89442e04042547b272db4cffa02bfc"
+    },
+    {
+      "path": "src/vlq.js",
+      "sha256": "e4b79e322b9e8b23b458b25c29e6d3501d1f692d0a130abb72ab4dd0ad055fa8"
+    },
+    {
+      "path": "scripts/build.js",
+      "sha256": "38843949e98e176b56b31c220a11d0f8bf6d7bdb2252106106e1e53731598bf9"
+    },
+    {
+      "path": "scripts/fixtures.js",
+      "sha256": "156568e7cd9c97be923d8b3e3771d05d4cae1429681718a707f83c6d5b7e46ab"
+    },
+    {
+      "path": "scripts/smoke.js",
+      "sha256": "a01ecf423cc0942a563cab3e22536d142cb861a2cc6df94ae2e5d4fa387032ad"
+    },
+    {
+      "path": "scripts/verify.js",
+      "sha256": "8a8b425ae1926688734dc7a5f80d40c2a97ab3e94c4b133c29816e8d715f27e6"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+name: sourcemap-resolve
+
+services:
+  app:
+    build: .
+    image: sourcemap-resolve:latest
+    environment:
+      PORT: 8080
+    ports:
+      # Host-side port is configurable: HOST_PORT=9000 docker compose up app
+      - "${HOST_PORT:-8080}:8080"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:8080/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+
+  # One-shot verification: runs after the API health check passes, executes
+  # code tests + production build validation + plain/sectioned smoke tests,
+  # reports via its exit code, and exits.
+  verify:
+    image: sourcemap-resolve:latest
+    build: .
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      API_URL: http://app:8080
+    command: ["node", "scripts/verify.js"]
+    restart: "no"

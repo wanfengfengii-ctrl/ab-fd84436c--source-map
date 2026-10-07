@@ -1,0 +1,17 @@
+{
+  "name": "sourcemap-resolve-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend monitoring source map stack-frame resolution service",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "build": "node scripts/build.js",
+    "smoke": "node scripts/smoke.js",
+    "verify": "node scripts/verify.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
